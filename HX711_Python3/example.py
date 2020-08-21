@@ -1,12 +1,12 @@
-#!/usr/bin/env python3
-import RPi.GPIO as GPIO  # import GPIO
+#!/usr/local/bin/python
+from pyA20.gpio import gpio
+from pyA20.gpio import port
 from hx711 import HX711  # import the class HX711
 
 try:
-    GPIO.setmode(GPIO.BCM)  # set GPIO pin mode to BCM numbering
     # Create an object hx which represents your real hx711 chip
     # Required input parameters are only 'dout_pin' and 'pd_sck_pin'
-    hx = HX711(dout_pin=21, pd_sck_pin=20)
+    hx = HX711(dout_pin=port.PA6, pd_sck_pin=port.PA6)
     # measure tare and save the value as offset for current channel
     # and gain selected. That means channel A and gain 128
     err = hx.zero()
@@ -58,6 +58,3 @@ try:
 
 except (KeyboardInterrupt, SystemExit):
     print('Bye :)')
-
-finally:
-    GPIO.cleanup()

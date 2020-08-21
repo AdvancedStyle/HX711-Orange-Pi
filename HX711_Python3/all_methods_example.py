@@ -1,17 +1,19 @@
-#!/usr/bin/env python3
-import RPi.GPIO as GPIO  # import GPIO
+#!/usr/local/bin/python
+
+from pyA20.gpio import gpio
+from pyA20.gpio import port
+
 from hx711 import HX711  # import the class HX711
 from hx711 import outliers_filter
 
 try:
-    GPIO.setmode(GPIO.BCM)  # set GPIO pin mode to BCM numbering
     # Create an object hx which represents your real hx711 chip
     # Required input parameters are only 'dout_pin' and 'pd_sck_pin'
     # If you do not pass any argument 'gain_channel_A' then the default value is 128
     # If you do not pass any argument 'set_channel' then the default value is 'A'
     # you can set a gain for channel A even though you want to currently select channel B
     hx = HX711(
-        dout_pin=21, pd_sck_pin=20, gain_channel_A=128, select_channel='B')
+        dout_pin=port.PA6, pd_sck_pin=port.PA6, gain_channel_A=128, select_channel='B')
 
     err = hx.reset()  # Before we start, reset the hx711 ( not necessary)
     if err:  # you can check if the reset was successful
@@ -171,6 +173,3 @@ try:
     print('\nThat is all. Cleaning up.')
 except (KeyboardInterrupt, SystemExit):
     print('Bye :)')
-
-finally:
-    GPIO.cleanup()
