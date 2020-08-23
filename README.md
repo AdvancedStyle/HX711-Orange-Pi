@@ -1,5 +1,4 @@
 # HX711 class for Orange Pi Zero written in Python 3.
-
 This is forked from: https://github.com/gandalf15/HX711 and almost all code is written by gandalf15, I have just updated the code to work using the Orange PI GPIO pyA20 library.
 
 ## Dependancies:

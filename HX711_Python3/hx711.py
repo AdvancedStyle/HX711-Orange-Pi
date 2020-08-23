@@ -56,8 +56,8 @@ class HX711:
 
         gpio.init()
 
-        gpio.setup(self._pd_sck, gpio.OUTPUT)  # pin _pd_sck is output only
-        gpio.setup(self._dout, gpio.INPUT)  # pin _dout is input only
+        gpio.setcfg(self._pd_sck, gpio.OUTPUT)  # pin _pd_sck is output only
+        gpio.setcfg(self._dout, gpio.INPUT)  # pin _dout is input only
         self.select_channel(select_channel)
         self.set_gain_A(gain_channel_A)
 
